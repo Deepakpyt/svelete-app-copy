@@ -76,7 +76,7 @@
             class:selected={showSummary}
             on:click={handleSummary}
             id="Summary"
-            name="switchTimeline"
+            name="switchTimelines"
             value="Summary"
             checked="checked"
           />
@@ -85,7 +85,7 @@
             class:selected={showTimeline}
             on:click={handleTimeline}
             id="Timeline"
-            name="switchTimeline"
+            name="switchTimelines"
             value="Timeline"
           />
           <label for="Summary">Summary</label>
