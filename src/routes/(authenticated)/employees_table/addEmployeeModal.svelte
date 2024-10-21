@@ -290,7 +290,7 @@
 
                 <input
                   autocorrect="off"
-                  type="text"
+                  type="date"
                   id="dob"
                   name="text"
                   placeholder="Date of Birth..."
@@ -372,7 +372,7 @@
 
                 <input
                   autocorrect="off"
-                  type="text"
+                  type="date"
                   id="completion_year"
                   name="text"
                   placeholder="Date of Completion..."

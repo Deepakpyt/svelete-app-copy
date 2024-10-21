@@ -117,7 +117,7 @@
 
           <input
             autocorrect="off"
-            type="text"
+            type="date"
             id="start_date"
             name="Start Date"
             placeholder="Start date (dd/mm/yyyy)"
@@ -128,7 +128,7 @@
 
           <input
             autocorrect="off"
-            type="text"
+            type="date"
             id="end_date"
             name="End Date"
             placeholder="End date (dd/mm/yyyy)"

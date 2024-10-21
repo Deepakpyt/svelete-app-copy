@@ -197,7 +197,7 @@
     align-items: center; center; margin-top:22px"
     >
       <div>
-        <input style="height: 3rem;" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-rgb(214, 0, 28) focus:shadow-outline" type="text" bind:value={batchFilter} on:input={() => filterData()} placeholder="Filter by Batch" />
+        <input style="height: 3rem;" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-rgb(214, 0, 28) focus:shadow-outline" type="text" bind:value={batchFilter} on:input={() => filterData()} placeholder="Search by Batch" />
       </div>      
       {#if showDeleteButton}
       <button class="btn btn-danger" style={`margin-left: 1rem; background-color: #63666B; height:3rem;`} on:click={deleteCheckbox} >Delete</button>
