@@ -97,7 +97,7 @@
 				<li>
 				  <a
 					on:click={handleLogout}
-					class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 no-underline"
+					class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 no-underline cursor-pointer"
 					role="menuitem"
 				  >
 					<Fa icon={faSignOut} class="mr-2" />
@@ -113,10 +113,5 @@
 </header>
 
 <style>
-	nav:hover ul, nav ul:hover {
-		display: block;
-	}
-	.group:hover .group-hover\:block {
-		display: block;
-	}
+
 </style>
