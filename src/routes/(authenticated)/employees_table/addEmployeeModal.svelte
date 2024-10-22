@@ -185,212 +185,275 @@
         <h3 class="text-4xl font-bold text-center mb-4">Add Employee</h3>
         <form on:submit={handleSubmit}>
           <div class="grid-container">
-            <div class="bg-aliceblue p-4 shadow-md">
+            <div class="bg-aliceblue p-4 shadow-md flex flex-col gap-4">
               <h2 class="">Basic Details</h2>
-
-              <input
-                autocorrect="off"
-                type="text"
-                id="employee_name"
-                name="name"
-                placeholder="Employee name..."
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                required
-                on:input={handleInput}
-              />
-
-              <input
-                autocorrect="off"
-                type="number"
-                id="employee_id"
-                name="id"
-                placeholder="Employee Id..."
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                required
-                on:input={handleInput}
-              />
-
-              <select
-                id="employee_batch"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
-                on:input={handleInput}
-                style="margin-top: 2rem;"
-              >
-                <option selected>Select a batch</option>
-                {#each newData as item}
-                  <option value={item.batch_name}>{item.batch_name}</option>
-                {/each}
-              </select>
-
-              <input
-                autocorrect="off"
-                type="email"
-                id="employee_email"
-                name="email"
-                placeholder="Employee email..."
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                required
-                on:input={handleInput}
-              />
-
-              <select
-                id="employee_status"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
-                on:input={handleInput}
-                style="margin-top: 2rem;"
-              >
-                <option selected>Select status</option>
-                <option value="Completed">Completed</option>
-                <option value="Left">Left</option>
-                <option value="On Hold">On Hold</option>
-                <option value="In Progress">In Progress</option>
-              </select>
-
-              <select
-                id="practice"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
-                on:input={handleInput}
-                style="margin-top: 2rem;"
-              >
-                <option selected>Select practice</option>
-                <option value="KUP">KUP</option>
-                <option value="KIP">KIP</option>
-                <option value="Frontend">Frontend</option>
-                <option value="Devops">Devops</option>
-                <option value="Java">Java</option>
-                <option value="Test Automation">Test Automation</option>
-                <option value="Scala">Scala</option>
-              </select>
-            </div>
-            <div class="p-4 bg-aliceblue shadow-md">
-              <div class="personal-info">
-                <h2 class="section-title">Personal Information</h2>
-
-                <input
-                  autocorrect="off"
-                  type="email"
-                  id="personal_email"
-                  name="email"
-                  placeholder="Personal Email..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
-
-                <input
-                  autocorrect="off"
-                  type="number"
-                  id="age"
-                  name="number"
-                  placeholder="Age..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
-
-                <input
-                  autocorrect="off"
-                  type="date"
-                  id="dob"
-                  name="text"
-                  placeholder="Date of Birth..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
-
-                <select
-                  id="gender"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
-                  on:input={handleInput}
-                  style="margin-top: 2rem;"
+              <div class="flex flex-col">
+                <label for="employee_name" class="text-start"
+                  >Employee Name</label
                 >
-                  <option selected>Select gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-
-                <input
-                  autocorrect="off"
-                  type="number"
-                  id="phone_number"
-                  name="number"
-                  placeholder="Phone Number..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
-
                 <input
                   autocorrect="off"
                   type="text"
-                  id="github_id"
-                  name="text"
-                  placeholder="GitHub ID..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
-
-                <input
-                  autocorrect="off"
-                  type="text"
-                  id="address"
-                  name="text"
-                  placeholder="Address..."
+                  id="employee_name"
+                  name="name"
+                  placeholder="Employee name..."
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
                   required
                   on:input={handleInput}
                 />
               </div>
+
+              <div class="flex flex-col">
+                <label for="employee_id" class="text-start">Employee Id</label>
+                <input
+                  autocorrect="off"
+                  type="number"
+                  id="employee_id"
+                  name="id"
+                  placeholder="Employee Id..."
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                  required
+                  on:input={handleInput}
+                />
+              </div>
+              <div class="flex flex-col">
+                <label for="employee_batch" class="text-start"
+                  >Employee Batch</label
+                >
+
+                <select
+                  id="employee_batch"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
+                  on:input={handleInput}
+                >
+                  <option selected>Select a batch</option>
+                  {#each newData as item}
+                    <option value={item.batch_name}>{item.batch_name}</option>
+                  {/each}
+                </select>
+              </div>
+              <div class="flex flex-col">
+                <label for="employee_email" class="text-start"
+                  >Employee Email</label
+                >
+
+                <input
+                  autocorrect="off"
+                  type="email"
+                  id="employee_email"
+                  name="email"
+                  placeholder="Employee email..."
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                  required
+                  on:input={handleInput}
+                />
+              </div>
+
+              <div class="flex flex-col">
+                <label for="employee_status" class="text-start"
+                  >Employee Status</label
+                >
+
+                <select
+                  id="employee_status"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
+                  on:input={handleInput}
+                >
+                  <option selected>Select status</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Left">Left</option>
+                  <option value="On Hold">On Hold</option>
+                  <option value="In Progress">In Progress</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col">
+                <label for="practice" class="text-start">Practice</label>
+                <select
+                  id="practice"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
+                  on:input={handleInput}
+                >
+                  <option selected>Select practice</option>
+                  <option value="KUP">KUP</option>
+                  <option value="KIP">KIP</option>
+                  <option value="Frontend">Frontend</option>
+                  <option value="Devops">Devops</option>
+                  <option value="Java">Java</option>
+                  <option value="Test Automation">Test Automation</option>
+                  <option value="Scala">Scala</option>
+                </select>
+              </div>
+            </div>
+            <div class="p-4 bg-aliceblue shadow-md">
+              <div class="personal-info flex flex-col gap-4">
+                <h2 class="section-title">Personal Information</h2>
+                <div class="flex flex-col">
+                  <label for="personal_email" class="text-start"
+                    >Personal Email</label
+                  >
+                  <input
+                    autocorrect="off"
+                    type="email"
+                    id="personal_email"
+                    name="email"
+                    placeholder="Personal Email..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="age" class="text-start">Age</label>
+
+                  <input
+                    autocorrect="off"
+                    type="number"
+                    id="age"
+                    name="number"
+                    placeholder="Age..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="dob" class="text-start">Date of Birth</label>
+
+                  <input
+                    autocorrect="off"
+                    type="date"
+                    id="dob"
+                    name="text"
+                    placeholder="Date of Birth..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="gender" class="text-start">Gender</label>
+                  <select
+                    id="gender"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
+                    on:input={handleInput}
+                  >
+                    <option selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div class="flex flex-col">
+                  <label for="phone_number" class="text-start"
+                    >Phone Number</label
+                  >
+
+                  <input
+                    autocorrect="off"
+                    type="number"
+                    id="phone_number"
+                    name="number"
+                    placeholder="Phone Number..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
+
+                <div class="flex flex-col">
+                  <label for="github_id" class="text-start">Github Id</label>
+                  <input
+                    autocorrect="off"
+                    type="text"
+                    id="github_id"
+                    name="text"
+                    placeholder="GitHub ID..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
+
+                <div class="flex flex-col">
+                  <label for="address" class="text-start">Address</label>
+
+                  <input
+                    autocorrect="off"
+                    type="text"
+                    id="address"
+                    name="text"
+                    placeholder="Address..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
+              </div>
             </div>
 
             <div class="p-4 bg-aliceblue shadow-md">
-              <div class="education-info">
+              <div class="education-info flex flex-col gap-4">
                 <h2 class="section-title">Education Qualification</h2>
-                <input
-                  autocorrect="off"
-                  type="text"
-                  id="degree"
-                  name="text"
-                  placeholder="Degree..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
+                <div class="flex flex-col">
+                  <label for="degree" class="text-start">Degree</label>
+                  <input
+                    autocorrect="off"
+                    type="text"
+                    id="degree"
+                    name="text"
+                    placeholder="Degree..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="college_name" class="text-start"
+                    >College Name</label
+                  >
 
-                <input
-                  autocorrect="off"
-                  type="text"
-                  id="college_name"
-                  name="text"
-                  placeholder="College Name..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
+                  <input
+                    autocorrect="off"
+                    type="text"
+                    id="college_name"
+                    name="text"
+                    placeholder="College Name..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="completion_year" class="text-start"
+                    >Completion Year</label
+                  >
 
-                <input
-                  autocorrect="off"
-                  type="date"
-                  id="completion_year"
-                  name="text"
-                  placeholder="Date of Completion..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
+                  <input
+                    autocorrect="off"
+                    type="date"
+                    id="completion_year"
+                    name="text"
+                    placeholder="Date of Completion..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
 
-                <input
-                  autocorrect="off"
-                  type="text"
-                  id="percentage"
-                  name="percentage"
-                  placeholder="Percentage..."
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-                  required
-                  on:input={handleInput}
-                />
+                <div class="flex flex-col">
+                  <label for="percentage" class="text-start">Percentage</label>
+
+                  <input
+                    autocorrect="off"
+                    type="text"
+                    id="percentage"
+                    name="percentage"
+                    placeholder="Percentage..."
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+                    required
+                    on:input={handleInput}
+                  />
+                </div>
               </div>
             </div>
             <p class="flex items-center gap-4 mt-12">
@@ -502,7 +565,6 @@
   textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 2rem;
     border-radius: 4px;
     border: none;
     box-shadow: inset 0 -2px rgba(0, 0, 0, 0.1);

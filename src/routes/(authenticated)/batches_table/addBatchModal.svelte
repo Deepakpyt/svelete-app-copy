@@ -103,67 +103,86 @@
     <div class="modal-content">
       <div class="prose">
         <h2 class="">Add Batch</h2>
-        <form on:submit={handleSubmit}>
-          <input
-            autocorrect="off"
-            type="text"
-            id="batch_name"
-            name="Batch Name"
-            placeholder="Batch name..."
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-            required
-            on:input={handleInput}
-          />
-
-          <input
-            autocorrect="off"
-            type="date"
-            id="start_date"
-            name="Start Date"
-            placeholder="Start date (dd/mm/yyyy)"
-            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
-            required
-            on:input={handleInput}
-          />
-
-          <input
-            autocorrect="off"
-            type="date"
-            id="end_date"
-            name="End Date"
-            placeholder="End date (dd/mm/yyyy)"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-            required
-            on:change={handleInput}
-          />
-
-          <select
-            id="status"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
-            on:input={handleInput}
-            style="margin-top: 2rem;"
-          >
-          <option selected>Select status</option>
-            <option value="Completed">Completed</option>
-            <option value="In Progress">In Progress</option>
-          </select>
-
-          <input
-            autocorrect="off"
-            type="number"
-            id="total_employee"
-            name="Total Employees"
-            placeholder="Total Employees..."
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-            required
-            on:input={handleInput}
-          />
+        <form on:submit={handleSubmit} class="flex flex-col gap-4">
+          <div class="flex flex-col">
+            <label for="batch_name" class="text-start">Batch Name</label>
+            <input
+              autocorrect="off"
+              type="text"
+              id="batch_name"
+              name="Batch Name"
+              placeholder="Batch name..."
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+              required
+              on:input={handleInput}
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="start_date" class="text-start">Start Date</label>
+            <input
+              autocorrect="off"
+              type="date"
+              id="start_date"
+              name="Start Date"
+              placeholder="Start date (dd/mm/yyyy)"
+              class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
+              required
+              on:input={handleInput}
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="end_date" class="text-start">End Date</label>
+            <input
+              autocorrect="off"
+              type="date"
+              id="end_date"
+              name="End Date"
+              placeholder="End date (dd/mm/yyyy)"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+              required
+              on:change={handleInput}
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="status" class="text-start">Status</label>
+            <select
+              id="status"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
+              on:input={handleInput}
+            >
+              <option selected>Select status</option>
+              <option value="Completed">Completed</option>
+              <option value="In Progress">In Progress</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label for="total_employee" class="text-start">Total Employee</label
+            >
+            <input
+              autocorrect="off"
+              type="number"
+              id="total_employee"
+              name="Total Employees"
+              placeholder="Total Employees..."
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+              required
+              on:input={handleInput}
+            />
+          </div>
 
           <p class="flex items-center gap-4 mt-12">
-            <button class="btn btn-primary" style={`background-color: var(--app-primary-color, #d60016);
+            <button
+              class="btn btn-primary"
+              style={`background-color: var(--app-primary-color, #d60016);
     border: none;
-    color: white;`} type="submit">Submit</button>
-            <button class="btn" style={`background-color: #63666B;`} on:click={handleClose}>Cancel</button>
+    color: white;`}
+              type="submit">Submit</button
+            >
+            <button
+              class="btn"
+              style={`background-color: #63666B;`}
+              on:click={handleClose}>Cancel</button
+            >
           </p>
         </form>
       </div>
@@ -230,9 +249,9 @@
   }
   @media (max-width: 700px) {
     .modal-content {
-    width: 90%;
+      width: 90%;
     }
-}
+  }
 
   form {
     max-width: 600px;
@@ -251,7 +270,6 @@
   textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 2rem;
     border-radius: 4px;
     border: none;
     box-shadow: inset 0 -2px rgba(0, 0, 0, 0.1);

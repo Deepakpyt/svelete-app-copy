@@ -66,9 +66,9 @@
       },
     };
   }
-  
-  onMount(updateForm)
-  afterUpdate(updateForm)
+
+  onMount(updateForm);
+  afterUpdate(updateForm);
   //  const formFields = writable(form);
 
   export let showModal = false; // Flag to indicate whether or not to show the modal
@@ -212,180 +212,220 @@
         <h1 class="text-4xl font-bold text-center mb-4">Edit Employee</h1>
         <form on:submit={handleSubmit}>
           <div class="grid-container">
-            <div class="bg-aliceblue p-4 shadow-md">
+            <div class="bg-aliceblue p-4 shadow-md flex flex-col gap-4">
               <h2 class="">Basic Details</h2>
-              <input
-                autocorrect="off"
-                type="text"
-                id="employee_name"
-                name="name"
-                placeholder="Employee name..."
-                class="input input-bordered w-full"
-                required
-                bind:value={editData.employee_name}
-                on:change={handleInput}
-              />
+              <div class="flex flex-col">
+                <label for="employee_name" class="text-start"
+                  >Employee Name</label
+                >
+                <input
+                  autocorrect="off"
+                  type="text"
+                  id="employee_name"
+                  name="name"
+                  placeholder="Employee name..."
+                  class="input input-bordered w-full"
+                  required
+                  bind:value={editData.employee_name}
+                  on:change={handleInput}
+                />
+              </div>
+              <div class="flex flex-col">
+                <label for="employee_id" class="text-start">Employee Id</label>
+                <input
+                  autocorrect="off"
+                  type="Number"
+                  id="employee_id"
+                  name="id"
+                  placeholder="Employee Id..."
+                  class="input input-bordered w-full"
+                  required
+                  value={editData.employee_id}
+                  on:change={handleInput}
+                />
+              </div>
+              <div class="flex flex-col">
+                <label for="employee_batch" class="text-start"
+                  >Employee Batch</label
+                >
+                <select
+                  id="employee_batch"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  on:input={handleInput}
+                  bind:value={editData.employee_batch}
+                >
+                  <option>Select a batch</option>
+                  {#each newData as item}
+                    <option value={item.batch_name}>{item.batch_name}</option>
+                  {/each}
+                </select>
+              </div>
 
-              <input
-                autocorrect="off"
-                type="Number"
-                id="employee_id"
-                name="id"
-                placeholder="Employee Id..."
-                class="input input-bordered w-full"
-                required
-                value={editData.employee_id}
-                on:change={handleInput}
-              />
-              <select
-                id="employee_batch"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                on:input={handleInput}
-                bind:value={editData.employee_batch}
-                style="margin-top: 2rem;"
-              >
-                <option>Select a batch</option>
-                {#each newData as item}
-                  <option value={item.batch_name}>{item.batch_name}</option>
-                {/each}
-              </select>
-
-              <input
-                autocorrect="off"
-                type="email"
-                id="employee_email"
-                name="email"
-                placeholder="Employee email..."
-                class="input input-bordered w-full"
-                required
-                value={editData.employee_email}
-                on:change={handleInput}
-              />
-
-              <select
-                id="employee_status"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                on:input={handleInput}
-                bind:value={editData.employee_status}
-                style="margin-top: 2rem;"
-              >
-                <option selected>Select status</option>
-                <option value="Completed">Completed</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Left">Left</option>
-                <option value="On Hold">On Hold</option>
-              </select>
-
-              <select
-                id="practice"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                on:input={handleInput}
-                bind:value={editData.practice}
-                style="margin-top: 2rem;"
-              >
-                <option selected>Select practice</option>
-                <option value="KUP">KUP</option>
-                <option value="KIP">KIP</option>
-                <option value="Frontend">Frontend</option>
-                <option value="Devops">Devops</option>
-                <option value="Java">Java</option>
-                <option value="Test Automation">Test Automation</option>
-                <option value="Scala">Scala</option>
-              </select>
-            </div>
-
-            <div class="p-4 bg-aliceblue shadow-md">
-              <div class="personal-info">
-                <h2 class="section-title">Personal Information</h2>
-
+              <div class="flex flex-col">
+                <label for="employee_email" class="text-start"
+                  >Employee Email</label
+                >
                 <input
                   autocorrect="off"
                   type="email"
-                  id="personal_email"
+                  id="employee_email"
                   name="email"
-                  placeholder="Personal Email..."
+                  placeholder="Employee email..."
                   class="input input-bordered w-full"
                   required
-                  bind:value={editData.employee_details.personal_email}
-                  on:input={handleInput}
+                  value={editData.employee_email}
+                  on:change={handleInput}
                 />
+              </div>
 
-                <input
-                  autocorrect="off"
-                  type="number"
-                  id="age"
-                  name="number"
-                  placeholder="Age..."
-                  class="input input-bordered w-full"
-                  required
-                  bind:value={editData.employee_details.age}
-                  on:input={handleInput}
-                />
-
-                <input
-                  autocorrect="off"
-                  type="date"
-                  id="dob"
-                  name="text"
-                  placeholder="Date of Birth..."
-                  class="input input-bordered w-full"
-                  required
-                  bind:value={editData.employee_details.dob}
-                  on:input={handleInput}
-                />
-
+              <div class="flex flex-col">
+                <label for="employee_status" class="text-start"
+                  >Employee Status</label
+                >
                 <select
-                  id="gender"
+                  id="employee_status"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   on:input={handleInput}
-                  style="margin-top: 2rem;"
+                  bind:value={editData.employee_status}
                 >
-                  <option selected>Select gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
+                  <option selected>Select status</option>
+                  <option value="Completed">Completed</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Left">Left</option>
+                  <option value="On Hold">On Hold</option>
                 </select>
-
-                <input
-                  autocorrect="off"
-                  type="number"
-                  id="phone_number"
-                  name="number"
-                  placeholder="Phone Number..."
-                  class="input input-bordered w-full"
-                  required
-                  bind:value={editData.employee_details.phone_number}
+              </div>
+              <div class="flex flex-col">
+                <label for="practice" class="text-start">Practice</label>
+                <select
+                  id="practice"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   on:input={handleInput}
-                />
-
-                <input
-                  autocorrect="off"
-                  type="text"
-                  id="github_id"
-                  name="text"
-                  placeholder="GitHub ID..."
-                  class="input input-bordered w-full"
-                  required
-                  bind:value={editData.employee_details.github_id}
-                  on:input={handleInput}
-                />
-
-                <input
-                  autocorrect="off"
-                  type="text"
-                  id="address"
-                  name="text"
-                  placeholder="Address..."
-                  class="input input-bordered w-full"
-                  required
-                  bind:value={editData.employee_details.address}
-                  on:input={handleInput}
-                />
+                  bind:value={editData.practice}
+                >
+                  <option selected>Select practice</option>
+                  <option value="KUP">KUP</option>
+                  <option value="KIP">KIP</option>
+                  <option value="Frontend">Frontend</option>
+                  <option value="Devops">Devops</option>
+                  <option value="Java">Java</option>
+                  <option value="Test Automation">Test Automation</option>
+                  <option value="Scala">Scala</option>
+                </select>
               </div>
             </div>
 
-              <div class="p-4 bg-aliceblue shadow-md">
-                <div class="education-info">
-                  <h2 class="section-title">Education Qualification</h2>
+            <div class="p-4 bg-aliceblue shadow-md">
+              <div class="personal-info flex flex-col gap-4">
+                <h2 class="section-title">Personal Information</h2>
+                <div class="flex flex-col">
+                  <label for="personal_email" class="text-start"
+                    >Personal Email</label
+                  >
+                  <input
+                    autocorrect="off"
+                    type="email"
+                    id="personal_email"
+                    name="email"
+                    placeholder="Personal Email..."
+                    class="input input-bordered w-full"
+                    required
+                    bind:value={editData.employee_details.personal_email}
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="age" class="text-start">Age</label>
+                  <input
+                    autocorrect="off"
+                    type="number"
+                    id="age"
+                    name="number"
+                    placeholder="Age..."
+                    class="input input-bordered w-full"
+                    required
+                    bind:value={editData.employee_details.age}
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="dob" class="text-start">Date of Birth</label>
+                  <input
+                    autocorrect="off"
+                    type="date"
+                    id="dob"
+                    name="text"
+                    placeholder="Date of Birth..."
+                    class="input input-bordered w-full"
+                    required
+                    bind:value={editData.employee_details.dob}
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="gender" class="text-start">Gender</label>
+                  <select
+                    id="gender"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    on:input={handleInput}
+                  >
+                    <option selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div class="flex flex-col">
+                  <label for="phone_number" class="text-start"
+                    >Phone Number</label
+                  >
+                  <input
+                    autocorrect="off"
+                    type="number"
+                    id="phone_number"
+                    name="number"
+                    placeholder="Phone Number..."
+                    class="input input-bordered w-full"
+                    required
+                    bind:value={editData.employee_details.phone_number}
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="github_id" class="text-start">Github Id</label>
+                  <input
+                    autocorrect="off"
+                    type="text"
+                    id="github_id"
+                    name="text"
+                    placeholder="GitHub ID..."
+                    class="input input-bordered w-full"
+                    required
+                    bind:value={editData.employee_details.github_id}
+                    on:input={handleInput}
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <label for="address" class="text-start">Address</label>
+                  <input
+                    autocorrect="off"
+                    type="text"
+                    id="address"
+                    name="text"
+                    placeholder="Address..."
+                    class="input input-bordered w-full"
+                    required
+                    bind:value={editData.employee_details.address}
+                    on:input={handleInput}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 bg-aliceblue shadow-md">
+              <div class="education-info flex flex-col gap-4">
+                <h2 class="section-title">Education Qualification</h2>
+                <div class="flex flex-col">
+                  <label for="degree" class="text-start">Degree</label>
                   <input
                     autocorrect="off"
                     type="text"
@@ -397,7 +437,11 @@
                     bind:value={editData.employee_details.education.degree}
                     on:input={handleInput}
                   />
-
+                </div>
+                <div class="flex flex-col">
+                  <label for="college_name" class="text-start"
+                    >College Name</label
+                  >
                   <input
                     autocorrect="off"
                     type="text"
@@ -410,7 +454,11 @@
                       .college_name}
                     on:input={handleInput}
                   />
-
+                </div>
+                <div class="flex flex-col">
+                  <label for="completion_year" class="text-start"
+                    >Completion Year</label
+                  >
                   <input
                     autocorrect="off"
                     type="date"
@@ -423,7 +471,9 @@
                       .completion_year}
                     on:input={handleInput}
                   />
-
+                </div>
+                <div class="flex flex-col">
+                  <label for="percentage" class="text-start">Percentage</label>
                   <input
                     autocorrect="off"
                     type="text"
@@ -437,15 +487,23 @@
                   />
                 </div>
               </div>
+            </div>
 
-              <p class="flex items-center gap-4 mt-12">
-                <button class="btn btn-primary" style={`background-color: var(--app-primary-color, #d60016);
+            <p class="flex items-center gap-4 mt-12">
+              <button
+                class="btn btn-primary"
+                style={`background-color: var(--app-primary-color, #d60016);
     border: none;
-    color: white;`} type="submit">Submit</button>
-                <button class="btn" style={`background-color: #63666B;`} on:click={handleClose} type="button"
-                  >Cancel</button
-                >
-              </p>
+    color: white;`}
+                type="submit">Submit</button
+              >
+              <button
+                class="btn"
+                style={`background-color: #63666B;`}
+                on:click={handleClose}
+                type="button">Cancel</button
+              >
+            </p>
           </div>
         </form>
       </div>
@@ -523,9 +581,9 @@
   }
   @media (max-width: 700px) {
     .modal-content {
-    width: 90%;
+      width: 90%;
     }
-}
+  }
 
   form {
     max-width: 600px;
@@ -544,7 +602,6 @@
   textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 2rem;
     border-radius: 4px;
     border: none;
     box-shadow: inset 0 -2px rgba(0, 0, 0, 0.1);

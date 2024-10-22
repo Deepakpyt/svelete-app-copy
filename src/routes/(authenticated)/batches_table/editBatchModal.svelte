@@ -2,11 +2,11 @@
   import { afterUpdate, onMount } from "svelte";
   let showError = false;
   let showSuccess = false;
-  let successMessage ='';
-  let errorMessage='';
+  let successMessage = "";
+  let errorMessage = "";
   export let editData: any;
   export let id: any;
-  export let getBatch:any;
+  export let getBatch: any;
   interface EditData {
     batch_name: String;
     start_date: Date;
@@ -15,7 +15,7 @@
     total_employee: Number;
   }
   let form: EditData;
-  function updateForm(){
+  function updateForm() {
     form = {
       batch_name: editData.batch_name,
       start_date: editData.start_date,
@@ -61,20 +61,20 @@
 
       if (response.ok) {
         // Handle success
-        successMessage='Batch edited successfully!';
-        showSuccess=true;
+        successMessage = "Batch edited successfully!";
+        showSuccess = true;
         getBatch();
         showModal = false;
       } else {
         // Handle error
-        errorMessage=response.statusText;
-        showError=true;
+        errorMessage = response.statusText;
+        showError = true;
         showModal = false;
         console.error("Failed to submit form:", response.statusText);
       }
     } catch (error) {
-      errorMessage=String(error);
-      showError=true;
+      errorMessage = String(error);
+      showError = true;
       showModal = false;
       console.error("Failed to submit form:", error);
     }
@@ -114,73 +114,91 @@
     <div class="modal-content">
       <div class="prose">
         <h2 class="">Edit Batch</h2>
-        <form on:submit={handleSubmit}>
-          <input
-            autocorrect="off"
-            type="text"
-            id="batch_name"
-            name="name"
-            placeholder="Batch name..."
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-            required
-            bind:value={editData.batch_name}
-            on:change={handleInput}
-          />
-
-          <input
-            autocorrect="off"
-            type="date"
-            id="start_date"
-            name="date"
-            placeholder="Start date..."
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-            required
-            value={editData.start_date}
-            on:change={handleInput}
-          />
-
-          <input
-            autocorrect="off"
-            type="date"
-            id="end_date"
-            name="date"
-            placeholder="End date..."
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-            required
-            value={editData.end_date}
-            on:change={handleInput}
-          />
-
-          <select
-          id="batch_status"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
-          style="margin-top: 2rem;"
-          bind:value={editData.batch_status}
-          on:change={handleInput}
-
-        >
-          <option value="Completed">Completed</option>
-          <option value="In Progress">In Progress</option>
-        </select>
-
-          <input
-            autocorrect="off"
-            type="number"
-            id="total_employee"
-            name="number"
-            placeholder="Total Employees..."
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
-            required
-            value={editData.total_employee}
-            on:change={handleInput}
-          />
+        <form on:submit={handleSubmit} class="flex flex-col gap-4">
+          <div class="flex flex-col">
+            <label for="batch_name" class="text-start">Batch Name</label>
+            <input
+              autocorrect="off"
+              type="text"
+              id="batch_name"
+              name="name"
+              placeholder="Batch name..."
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+              required
+              bind:value={editData.batch_name}
+              on:change={handleInput}
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="start_date" class="text-start">Start Date</label>
+            <input
+              autocorrect="off"
+              type="date"
+              id="start_date"
+              name="date"
+              placeholder="Start date..."
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+              required
+              value={editData.start_date}
+              on:change={handleInput}
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="end_date" class="text-start">End Date</label>
+            <input
+              autocorrect="off"
+              type="date"
+              id="end_date"
+              name="date"
+              placeholder="End date..."
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+              required
+              value={editData.end_date}
+              on:change={handleInput}
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="batch_Status" class="text-start">Status</label>
+            <select
+              id="batch_status"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red"
+              bind:value={editData.batch_status}
+              on:change={handleInput}
+            >
+              <option value="Completed">Completed</option>
+              <option value="In Progress">In Progress</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label for="total_employee" class="text-start"
+              >Total Employees</label
+            >
+            <input
+              autocorrect="off"
+              type="number"
+              id="total_employee"
+              name="number"
+              placeholder="Total Employees..."
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red focus:border-red block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red dark:focus:border-red w-full"
+              required
+              value={editData.total_employee}
+              on:change={handleInput}
+            />
+          </div>
 
           <p class="flex items-center gap-4 mt-12">
-            <button class="btn btn-primary" style={`background-color: var(--app-primary-color, #d60016);
+            <button
+              class="btn btn-primary"
+              style={`background-color: var(--app-primary-color, #d60016);
     border: none;
-    color: white;`} type="submit">Submit</button>
-            <button class="btn" style={`background-color: #63666B;`}  on:click={handleClose} type="button"
-              >Cancel</button
+    color: white;`}
+              type="submit">Submit</button
+            >
+            <button
+              class="btn"
+              style={`background-color: #63666B;`}
+              on:click={handleClose}
+              type="button">Cancel</button
             >
           </p>
         </form>
@@ -189,23 +207,26 @@
   </div>
 </template>
 {#if showError}
-<div class="toast toast-top toast-center">
-  <div class="alert alert-error">
-    <span class="notification-span">{errorMessage}</span>
-    <button class="btn btn-ghost" on:click={() => (showError = false)}>Close</button>
+  <div class="toast toast-top toast-center">
+    <div class="alert alert-error">
+      <span class="notification-span">{errorMessage}</span>
+      <button class="btn btn-ghost" on:click={() => (showError = false)}
+        >Close</button
+      >
+    </div>
   </div>
-</div>
 {/if}
 
 {#if showSuccess}
-<div class="toast toast-top toast-center">
-  <div class="alert alert-success">
-    <span class="notification-span">{successMessage}</span>
-    <button class="btn btn-ghost" on:click={() => (showSuccess = false)}>Close</button>
-  </div>
+  <div class="toast toast-top toast-center">
+    <div class="alert alert-success">
+      <span class="notification-span">{successMessage}</span>
+      <button class="btn btn-ghost" on:click={() => (showSuccess = false)}
+        >Close</button
+      >
+    </div>
   </div>
 {/if}
-
 
 <style>
   .modal-container {
@@ -245,9 +266,9 @@
   }
   @media (max-width: 700px) {
     .modal-content {
-    width: 90%;
+      width: 90%;
     }
-}
+  }
 
   form {
     max-width: 600px;
@@ -266,13 +287,12 @@
   textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 2rem;
     border-radius: 4px;
     border: none;
     box-shadow: inset 0 -2px rgba(0, 0, 0, 0.1);
   }
 
-  .notification-span{
+  .notification-span {
     width: 19rem;
     color: black;
   }
